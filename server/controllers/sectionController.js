@@ -91,10 +91,25 @@ const getAllSections = async (req, res) => {
     }
 };
 
+const changeDirector = async (req, res, next) => {
+  try {
+    const directorId = req.body.directorId;
+    const sectionId = req.body.sectionId;
+
+    const section = await SectionModel.findById(sectionId);
+    section.director = directorId;
+    await section.save();
+    
+  } catch (error) {
+    res.status(500).json({ error, message: "Faailed to change the director"});
+  }
+}
+
 module.exports = {
     createSection,
     deleteSection,
     getAllSections,
     assignSection,
     removeSection,
+    changeDirector,
 };
