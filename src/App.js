@@ -136,7 +136,7 @@ const App = () => {
                     icon={<AdminPanelSettingsIcon />}
                     label="Administrator"
                     component={Link}
-                    to="/admin"
+                    to="/admin/adminProjects"
                   />
                 ) : null}
               </Tabs>

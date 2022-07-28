@@ -2,9 +2,7 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 import Modal from 'react-modal';
-import { mediaQueries } from '../../shared/config';
 import config from '../../config';
-
 import axios from 'axios';
 
 //material UI components
@@ -38,7 +36,6 @@ export default function Project(props) {
       .then((res) => {
         alert(res.data);
         window.location.reload();
-        //props.handleUpdateProject();
         setDeleteProjectModalOpen(false);
       })
       .catch((err) => alert(err.message));
@@ -46,9 +43,6 @@ export default function Project(props) {
 
   return (
     <>
-      {/* <TableContainer component={Paper}>
-      <Table  aria-label="simple table"> */}
-
       <TableRow>
         <TableCell>{data.name}</TableCell>
         <TableCell>{data.status}</TableCell>
@@ -66,8 +60,6 @@ export default function Project(props) {
           </Button>
         </TableCell>
       </TableRow>
-      {/* </Table>
-    </TableContainer> */}
       <Modal
         isOpen={deleteProjectModalOpen}
         onRequestClose={() => setDeleteProjectModalOpen(false)}
@@ -75,8 +67,8 @@ export default function Project(props) {
         style={modalCustomStyles}
       >
         <p>Are you sure you want to delete this project?</p>
-        <button onClick={() => setDeleteProjectModalOpen(false)}>Cancel</button>
-        <button onClick={() => handleDeleteProject(data['_id'])}>Delete</button>
+        <Buttons onClick={() => handleDeleteProject(data['_id'])}>Delete</Buttons>
+        <Buttons onClick={() => setDeleteProjectModalOpen(false)}>Cancel</Buttons>
       </Modal>
     </>
   );
@@ -85,35 +77,15 @@ export default function Project(props) {
 /**
  * Styled components declaration
  */
-const ProjectContainer = styled.div`
-  width: 80%;
-  margin: auto;
-  ${mediaQueries.tablet} {
-    width: 90%;
-  }
-  ${mediaQueries.mobile} {
-    width: 80%;
-  }
+ const Buttons = styled.button`
+ display: inline-block;
+ border-radius: 3px;
+ padding: 0.5rem 0;
+ margin: 0.5rem 0.2rem;
+ width: 6em;
+ background: white;
+ color: black;
+ border: 2px solid lightblue;
 `;
 
-const TestPreview = styled.div`
-  height: 400px;
-  background: #bbbbbb;
-  position: relative;
-  text-align: center;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 5px 5px 0 0;
-  color: gray;
-`;
 
-const Description = styled.div`
-  border-radius: 0 0 5px 5px;
-  color: white;
-  padding: 0.5em 1em 1.5em 1em;
-  background: #333333;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-`;

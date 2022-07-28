@@ -1,4 +1,5 @@
 const config = {
+  devtool: 'eval-source-map',
   SERVER_URL:
     process.env.NODE_ENV === "production"
       ? "https://buzz.dailybruin.com"

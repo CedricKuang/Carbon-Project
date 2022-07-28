@@ -27,7 +27,9 @@ const Dash = (props) => {
     function getProject() {
       axios
         .get(config.SERVER_URL + '/api/projects/')
-        .then((res) => setProjects(res.data))
+        .then((res) => {
+          setProjects(res.data)
+        })
         .catch((err) => console.log(err));
     }
     getProject();

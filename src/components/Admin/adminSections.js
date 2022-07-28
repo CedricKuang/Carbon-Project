@@ -1,8 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import { withRouter } from "react-router-dom";
+import CreateSection from "./Sections/CreateSections"
 import {
   Grid,
   Typography,
+  Box,
+  tableCellClasses,
   Button,
   Paper,
   Container,
@@ -13,47 +17,95 @@ import {
   Table,
   TableHead,
 } from "@mui/material";
-import { makeStyles } from "@material-ui/core/styles";
+import { styled } from '@mui/material/styles';
+import config from "../../config.js";
+import SingleSection from './Sections/Single_Section';
 
-const useStyles = makeStyles({
-  paper: {
-    width: "100%",
-    height: "20%",
+const StyledTableCell = styled(TableCell)(({ theme }) => ({
+  [`&.${tableCellClasses.head}`]: {
+    backgroundColor: "#8ECAE6",
+    color: "#023047",
+    fontSize: 18,
   },
-});
+  [`&.${tableCellClasses.body}`]: {
+    fontSize: 14,
+  },
+}));
+
+const StyledTableRow = styled(TableRow)(({ theme }) => ({
+  '&:nth-of-type(odd)': {
+    backgroundColor: "#FDFCDC",
+  },
+  // hide last border
+  '&:last-child td, &:last-child th': {
+    border: 0,
+  },
+}));
 
 const AdminSection = (props) => {
-  const classes = useStyles();
   const [sections, setSections] = useState([]);
+
+  useEffect(() => {
+    function getSection() {
+      axios
+        .get(config.SERVER_URL + '/api/admin/sections')
+        .then((res) => {
+          setSections((res.data).allSections);
+        })
+        .catch((err) => console.log(err));
+    }
+    getSection();
+  }, []);
+
+  const handleUpdateSection = () => {
+    setSections(sections.map());
+  };
 
   return (
     <>
-      <Grid container spacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
+    
+      <Grid container spacing={2}
+      sx={{
+        display:"flex",
+        justifyContent:"center",
+      }}
+       >
+      <Typography align="center"
+      sx= {{
+        p:2
+      }}
+      >
+      <CreateSection />
+      </Typography>
         <Paper
           align="center"
           gutterBottom
           sx={{ p: 2 }}
-          className={classes.paper}
           elevation={0}
         >
-          {/* <Button align="center" size="large" variant="contained">
-            CREATE SECTION
-          </Button> */}
         </Paper>
         <Container>
           <TableContainer component={Paper}>
             <Table>
               <TableHead>
                 <TableRow>
-                  <TableCell>Section Name</TableCell>
-                  <TableCell>Edit</TableCell>
-                  <TableCell>Delete</TableCell>
+                  <StyledTableCell>Section Name</StyledTableCell>
+                  <StyledTableCell>Delete</StyledTableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
                 {sections.map((section, index) => {
-                  return <></>;
+                  return (
+                    <>
+                    <SingleSection
+                      key={index}
+                      data={section}
+                      handleUpdateSection={handleUpdateSection}
+                    />
+                    </>
+                  );
                 })}
+
               </TableBody>
             </Table>
           </TableContainer>
