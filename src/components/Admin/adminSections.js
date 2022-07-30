@@ -48,7 +48,7 @@ const AdminSection = (props) => {
   useEffect(() => {
     function getSection() {
       axios
-        .get(config.SERVER_URL + '/api/admin/sections')
+        .get(config.SERVER_URL + '/api/section/sections')
         .then((res) => {
           setSections((res.data).allSections);
         })

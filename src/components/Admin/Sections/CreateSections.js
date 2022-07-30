@@ -15,7 +15,7 @@ const CreateSection = (props) => {
   useEffect(() => {
     function getSection() {
       axios
-        .get(config.SERVER_URL + '/api/admin/sections')
+        .get(config.SERVER_URL + '/api/section/sections')
         .then((res) => {
           setSections(res.data)
          // window.location.reload();
@@ -64,7 +64,7 @@ const CreateSection = (props) => {
 
           onSubmit={(values, { setSubmitting }) => {
             axios
-              .post(config.SERVER_URL + '/api/admin/createSection', {
+              .post(config.SERVER_URL + '/api/section/createSection', {
                 sectionName: values.sectionName,
               })
               .then((res) => {

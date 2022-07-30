@@ -28,7 +28,7 @@ const SingleSection = (props) => {
   console.log(data);
   const handleDeleteSection = (id) => {
     axios
-      .delete(config.SERVER_URL + `/api/admin/${id}`)
+      .delete(config.SERVER_URL + `/api/section/${id}`)
       .then((res) => {
         alert(res.data);
         window.location.reload();

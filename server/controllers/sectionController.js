@@ -56,11 +56,21 @@ const createSection = async (req, res) => {
     try {
       const userId = req.user["_id"];
       const { sectionName } = req.body;
-      const newSection = new Section({ sectionName, director: userId });
 
-      await newSection.save();
+      let section = await SectionModel.find({ sectionName: req.body.sectionName });
+      console.log(section);
+      if (Object.keys(section).length !== 0) 
+      {
+        res.status(500).json({message: "This section already exists"});
+      }
+      else
+      {
+        const newSection = new Section({ sectionName, director: userId });
+
+        await newSection.save();
   
-      res.status(200).json({ message: "New section created", section: newSection });
+        res.status(200).json({ message: "New section created", section: newSection });
+      }
     } catch (error) {
       res.status(500).json({ error, message: "Failed to create section" });
     }
