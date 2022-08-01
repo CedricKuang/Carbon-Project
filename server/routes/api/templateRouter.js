@@ -2,11 +2,13 @@ const Router = require("express-promise-router");
 const { read } = require("fs");
 
 const {
-    // TODO
+  getAllTemplates,
+  getUserTemplates,
 } = require("../../controllers/templateController");
 
 const router = new Router();
 
-// TODO
+router.get("/", isAdmin, getAllTemplates);
+router.get("/:userId", getUserTemplates);
 
 module.exports = router;
