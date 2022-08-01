@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const sectionSchema = mongoose.Schema(
   {
     sectionName: { type: String },
-    templates: [{ type: mongoose.Schema.Types.ObjectId, ref: "Project" }],
+    templates: [{ type: mongoose.Schema.Types.ObjectId, ref: "Template" }],
     director: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
     members: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
   },

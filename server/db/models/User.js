@@ -9,6 +9,7 @@ const userSchema = mongoose.Schema(
       id: { type: String, required: [true, "can't be blank"], unique: true },
     },
     projectsCreated: [{ type: mongoose.Schema.Types.ObjectId, ref: "Project" }],
+    templatesCreated: [{ type: mongoose.Schema.Types.ObjectId, ref: "Template" }],
     admin: {
       type: Boolean,
       default: false,
