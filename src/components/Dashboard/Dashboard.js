@@ -1,27 +1,23 @@
-import React, { useState, useEffect } from 'react';
-import styled from 'styled-components';
-import axios from 'axios';
-import { mediaQueries } from '../../shared/config';
-import config from '../../config';
-
-import Project from './Project';
+import React, { useState, useEffect } from "react";
+import styled from "styled-components";
+import axios from "axios";
+import config from "../../config";
+import Project from "./Project";
 
 //material UI components
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
-import Button from '@mui/material/Button';
-
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
+import Paper from "@mui/material/Paper";
+import Button from "@mui/material/Button";
 
 // Component declaration
 
 const Dash = (props) => {
   const [projects, setProjects] = useState([]);
-
 
   useEffect(() => {
     function getProject() {
@@ -39,17 +35,9 @@ const Dash = (props) => {
     setProjects(projects.map());
   };
 
-
   return (
     <div>
-      <Header>
-        {projects.length !== 0 && (
-          <>
-           
-          </>
-        )}
-      </Header>
-
+      <Header>{projects.length !== 0 && <></>}</Header>
       {projects.length === 0 ? (
         <NoProjectContainer>
           {/* <h1>You haven't created any projects</h1> */}
@@ -62,9 +50,7 @@ const Dash = (props) => {
                 <TableRow>
                   <TableCell>ProjectName</TableCell>
                   <TableCell>Status</TableCell>
-                  <TableCell>
-                    Edit
-                  </TableCell>
+                  <TableCell>Edit</TableCell>
                   <TableCell>Delete</TableCell>
                 </TableRow>
               </TableHead>
@@ -104,7 +90,7 @@ const Buttons = styled.button`
 
 const Container = styled.div`
   ${
-    '' /* background: #444444;
+    "" /* background: #444444;
   display: grid;
   grid-template-columns: 50% 50%;
   padding: 2em 0;

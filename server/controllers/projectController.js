@@ -105,10 +105,10 @@ const draft = async (req, res, next) => {
   try {
     const { id } = req.body;
 
-    const project = await ProjectModel.findById(id);
+    const project = await Project.findById(id);
 
     project.isApproved = false;
-    project.status = "draft";
+    project.status = "Draft";
     await project.save();
 
     res.status(200).json({ message: "Project is drafted" });
@@ -121,7 +121,7 @@ const readyToView = async (req, res, next) => {
   try {
     const { id } = req.body;
 
-    const project = await ProjectModel.findById(id); //built in mongoose function
+    const project = await Project.findById(id); //built in mongoose function
 
     project.isApproved = false;
     project.status = "Ready to be viewed";
