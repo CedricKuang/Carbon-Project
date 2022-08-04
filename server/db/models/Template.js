@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const templateSchema = mongoose.Schema(
   {
-    name: { type: String },
+    templateName: { type: String },
     content: { type: mongoose.Schema.Types.Mixed, default: {} },
     sections: [{ type: mongoose.Schema.Types.ObjectId, ref: "Section" }],
     createdBy: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
