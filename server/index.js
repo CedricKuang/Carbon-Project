@@ -45,7 +45,7 @@ app.use(sessions);
 
 // after configuring both passport and session, this middleware basically
 // requires people to login before they can access all the functionalities
-// of carbon/buzz.
+// of carbon.
 app.use(auth);
 
 // API routing

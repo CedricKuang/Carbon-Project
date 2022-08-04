@@ -2,7 +2,7 @@ const config = {
   devtool: 'eval-source-map',
   SERVER_URL:
     process.env.NODE_ENV === "production"
-      ? "https://buzz.dailybruin.com"
+      ? "https://carbon.dailybruin.com"
       : "http://localhost:3000",
   auditSheet:
     "https://docs.google.com/spreadsheets/d/1dOOL9Y4eZaTOTrTLsjPGCcjE6euqXazfgeaK3DIu2jc/edit",

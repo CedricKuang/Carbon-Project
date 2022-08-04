@@ -5,7 +5,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.dev
-    image: buzz
+    image: carbon
     env_file: .env
     ports:
       - "3000:3000"

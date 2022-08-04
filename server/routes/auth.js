@@ -3,7 +3,7 @@ const passport = require('passport');
 
 const router = new Router();
 
-const callbackURL = process.env.NODE_ENV === "production" ? "https://buzz.dailybruin.com" : "http://localhost:3000";
+const callbackURL = process.env.NODE_ENV === "production" ? "https://carbon.dailybruin.com" : "http://localhost:3000";
 
 
 // GET /auth/google

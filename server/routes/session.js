@@ -5,7 +5,7 @@ const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth2').Strategy;
 
 const { User } = require('../db');
-const callbackURL = process.env.NODE_ENV === "production" ? "https://buzz.dailybruin.com" : "http://localhost:3000";
+const callbackURL = process.env.NODE_ENV === "production" ? "https://carbon.dailybruin.com" : "http://localhost:3000";
 
 const router = new Router();
 
