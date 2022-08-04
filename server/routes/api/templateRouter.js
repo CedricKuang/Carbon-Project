@@ -12,7 +12,7 @@ const {
 
 const router = new Router();
 
-router.get("/", isAdmin, getAllTemplates);
+router.get("/", getAllTemplates);
 router.get("/:userId", getUserTemplates);
 router.post("/create", createTemplate);
 router.get("/:templateId", readTemplate);
