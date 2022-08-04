@@ -6,35 +6,6 @@ const SectionModel = require("../db/models/Section");
 const { User } = require("../db");
 const { Section } = require("../db");
 
-//import AWS SDK and fs module to upload files to S3 bucket
-const AWS = require('aws-sdk');
-const fs = require('fs');
-
-const s3 = new AWS.S3({
-  accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-  secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY
-});
-
-const uploadFile = (fileName) => {
-    // Read content from the file
-    const fileContent = fs.readFileSync(fileName);
-
-    // Setting up S3 upload parameters
-    const params = {
-        Bucket: "carbonprojects",
-        Key: `${fileName}`,
-        Body: fileContent
-    };
-
-    // Uploading files to the bucket
-    s3.upload(params, function(err, data) {
-        if (err) {
-            throw err;
-        }
-        console.log(`File uploaded successfully. ${data.Location}`);
-    });
-};
-
 const isAuthenticated = async (req, res, next) => {
   // req.isAuthenticated() is a method passed from the passport
   // authentication that we can use to check whether
@@ -176,7 +147,6 @@ const approve = async (req, res, next) => {
     project.isApproved = true;
     project.status = "Approved";
     await project.save();
-    uploadFile(project.name);
 
     res.status(200).json({ message: "Project has been approved" });
   } catch (error) {
