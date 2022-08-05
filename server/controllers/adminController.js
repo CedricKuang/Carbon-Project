@@ -44,7 +44,7 @@ const checkSuperAdmin = async (req, res) => {
   } catch (error) {
     res.status(500).json({ error });
   }
-}
+};
 
 const getAllUsers = async (req, res, next) => {
   try {
@@ -69,7 +69,7 @@ const getAllUsers = async (req, res, next) => {
 const getAllProjects = async (req, res, next) => {
   // Cedric: I implement this way but I have not tested them yet. You can eleaborate them and test them.
   try {
-    let allProjects = await ProjectModel.find({ status: 'Ready to be viewed' });
+    let allProjects = await ProjectModel.find({ status: "Ready to be viewed" });
 
     res.status(200).json({
       allProjects,
@@ -177,7 +177,7 @@ const changesRequested = async (req, res, next) => {
     const project = await ProjectModel.findById(id);
 
     project.isApproved = false;
-    project.status = "changesRequested";
+    project.status = "Changes Requested";
     await project.save();
 
     res.status(200).json({

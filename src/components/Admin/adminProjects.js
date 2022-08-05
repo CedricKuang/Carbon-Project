@@ -23,6 +23,18 @@ function Project(props) {
   const history = useHistory();
   const { data } = props;
 
+  const handleDenyProjects = (id) => {
+    axios
+      .post(config.SERVER_URL + `/api/admin/deny`, {
+        id: id,
+      })
+      .then((res) => {
+        alert(res.data);
+        window.location.reload();
+      })
+      .catch((err) => alert(err.message));
+  };
+
   const handleApproveProjects = (id) => {
     axios
       .post(config.SERVER_URL + `/api/admin/approve`, {
@@ -35,9 +47,9 @@ function Project(props) {
       .catch((err) => alert(err.message));
   };
 
-  const handleDenyProjects = (id) => {
+  const handleRequestProjectChange = (id) => {
     axios
-      .post(config.SERVER_URL + `/api/admin/deny`, {
+      .post(config.SERVER_URL + `/api/admin/changesRequested`, {
         id: id,
       })
       .then((res) => {
@@ -59,6 +71,16 @@ function Project(props) {
             onClick={() => history.push(`/edit/${data["_id"]}`)}
           >
             View
+          </Button>
+        </TableCell>
+        <TableCell>
+          <Button
+            size="small"
+            variant="outlined"
+            color="warning"
+            onClick={() => handleRequestProjectChange(data["_id"])}
+          >
+            Request Change
           </Button>
         </TableCell>
         <TableCell>
@@ -129,6 +151,7 @@ const AdminProjects = (props) => {
                   <TableCell>ProjectName</TableCell>
                   <TableCell>Status</TableCell>
                   <TableCell>View</TableCell>
+                  <TableCell>Request Changes</TableCell>
                   <TableCell>Approve</TableCell>
                   <TableCell>Deny</TableCell>
                 </TableRow>

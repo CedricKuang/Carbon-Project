@@ -20,7 +20,7 @@ import AdminSection from "./adminSections";
 
 const AdminPage = () => {
   const [adminTabIndex, setAdminTabIndex] = React.useState(
-    localStorage.getItem("adminTab") != undefined
+    localStorage.getItem("adminTab") !== null
       ? parseInt(localStorage.getItem("adminTab"))
       : 0
   );

@@ -29,12 +29,17 @@ import config from "./config";
 import Create from "./components/Dashboard/Create";
 
 const App = () => {
-  const [value, setValue] = React.useState(1);
+  const [tabIndex, setTabIndex] = React.useState(
+    localStorage.getItem("tabIndex") !== null
+      ? parseInt(localStorage.getItem("tabIndex"))
+      : 0
+  );
   const [collapseNavbar, setcollapseNavbar] = React.useState(false);
   const [isAdmin, setIsAdmin] = React.useState(0);
 
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
+  const handleTabIndexChange = (event, newIndex) => {
+    localStorage.setItem("tabIndex", newIndex);
+    setTabIndex(newIndex);
   };
 
   axios.get(config.SERVER_URL + `/api/admin/is_admin`).then((res) => {
@@ -118,8 +123,8 @@ const App = () => {
           <Route path="/">
             <Grid item xs={2}>
               <Tabs
-                value={value}
-                onChange={handleChange}
+                value={tabIndex}
+                onChange={handleTabIndexChange}
                 orientation="vertical"
               >
                 <Grid container justifyContent="center">
